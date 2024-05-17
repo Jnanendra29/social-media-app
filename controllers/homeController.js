@@ -1,5 +1,7 @@
 const home = (req, res) => {
-  res.send('<h1>Express is up for social media app</h1>');
+  return res.render("home", {
+    title: "Home",
+  });
 };
 
 module.exports = {

@@ -1,5 +1,7 @@
 const profile = (req, res) => {
-  res.send("<h1>User Profile</h1>");
+  return res.render('user_profile', {
+    title: "userProfile"
+  })
 };
 
 module.exports = {

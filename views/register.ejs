@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/loginNregister.css" />
+
+<div class="loginContainer">
+  <div class="loginform">
+    <h2>Register</h2>
+    <form action="/users/create" method="post">
+      <div class="input-field">
+        <label for="name">Enter your username: </label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <div class="input-field">
+        <label for="email">Please enter your email: </label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="input-field">
+        <label for="password">Enter password here: </label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <div class="input-field">
+        <label for="conf-password">Re-enter password here: </label>
+        <input type="password" id="conf-password" name="confirm_password" required />
+      </div>
+      <button type="submit">Register</button>
+    </form>
+  </div>
+</div>

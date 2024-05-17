@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/css/loginNregister.css" />
+
+<div class="loginContainer">
+  <div class="loginform">
+    <h2>Login</h2>
+    <form action="/users/create-session" method="post">
+      <div class="input-field">
+        <label for="email">Please enter your email: </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+        />
+      </div>
+
+      <div class="input-field">
+        <label for="password">Enter password here: </label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          required
+        />
+      </div>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>

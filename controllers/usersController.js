@@ -8,6 +8,10 @@ const profile = (req, res) => {
 
 //render the login page
 const login = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
+
   return res.render("login", {
     title: "login",
   });
@@ -15,6 +19,10 @@ const login = (req, res) => {
 
 //render the register page
 const register = (req, res) => {
+  if (req.isAuthenticated()) {
+    return res.redirect("/users/profile");
+  }
+
   return res.render("register", {
     title: "register",
   });
@@ -55,7 +63,17 @@ const create = (req, res) => {
 
 //login and create the session data
 const create_session = (req, res) => {
-  //todo
+  return res.redirect("/");
+};
+
+const destroySession = (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      console.log(err);
+      return;
+    }
+    return res.redirect("/users/login");
+  });
 };
 
 module.exports = {
@@ -63,4 +81,6 @@ module.exports = {
   login,
   register,
   create,
+  create_session,
+  destroySession,
 };

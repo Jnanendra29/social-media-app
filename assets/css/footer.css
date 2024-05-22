@@ -1,0 +1,21 @@
+footer {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background-color: aqua;
+  justify-content: start; }
+  footer ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none; }
+    footer ul li {
+      margin-left: 26px;
+      margin-top: 15px; }
+      footer ul li a {
+        text-decoration: none;
+        color: #353232;
+        font-weight: bold; }
+  footer h3 {
+    margin-top: 12px;
+    margin-left: 26px;
+    text-align: center; }

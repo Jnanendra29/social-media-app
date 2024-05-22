@@ -17,4 +17,4 @@ const createPost = (req, res) => {
     });
 };
 
-module.exports = createPost
+module.exports = {createPost}

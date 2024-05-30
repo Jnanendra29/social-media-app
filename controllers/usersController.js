@@ -1,9 +1,37 @@
 const userModel = require("../models/user");
 
+//profile
 const profile = (req, res) => {
-  return res.render("user_profile", {
-    title: "userProfile",
-  });
+  userModel
+    .findById(req.params.id)
+    .exec()
+    .then((user) => {
+      return res.render("user_profile", {
+        title: "userProfile",
+        profile_user: user,
+      });
+    })
+    .catch((error) =>
+      console.log("error in fetching user in profile controller: ", error)
+    );
+};
+
+//update
+const update = (req, res) => {
+  if (req.user.id == req.params.id) {
+    userModel
+      .findByIdAndUpdate(req.params.id, req.body, { new: true })
+      .exec()
+      .then((user) => {
+        console.log("succesfully updated the user: ", user);
+        return res.redirect("back");
+      })
+      .catch((error) =>
+        console.log("error while updating the profile info: ", error)
+      );
+  } else {
+    return res.status(401).send("Unauthorized");
+  }
 };
 
 //render the login page
@@ -83,4 +111,5 @@ module.exports = {
   create,
   create_session,
   destroySession,
+  update,
 };

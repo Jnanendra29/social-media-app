@@ -7,9 +7,9 @@
 body {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   flex-direction: column;
   height: 100vh;
   background-color: #f0f0f0; }
   body .layout-main {
-    width: 54vw; }
+    width: 100vw;
+    flex-grow: 1; }

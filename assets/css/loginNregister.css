@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  max-width: 700px;
+  width: 50%;
+  height: fit-content;
   padding: 20px;
   background-color: #fff;
   border-radius: 10px;

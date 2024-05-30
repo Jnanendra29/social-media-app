@@ -9,11 +9,11 @@ const createPost = (req, res) => {
   new_post
     .save()
     .then(() => {
-      console.log("post created", new_post);
+      req.flash("success", "Post published");
       return res.redirect("/");
     })
     .catch((error) => {
-      console.log("error in creating post", error);
+      req.flash("error", error);
       return res.redirect("back");
     });
 };
@@ -36,6 +36,7 @@ const destroy = (req, res) => {
         deletedComments
           .then((result) => {
             console.log("comments deleted successfully: ", result);
+            req.flash("success", "Post and associated comments deleted");
             return res.redirect("/");
           })
           .catch((error) => {
@@ -43,11 +44,12 @@ const destroy = (req, res) => {
             return res.redirect("back");
           });
       } else {
+        req.flash("error", "You cannot delete this post");
         return res.redirect("back");
       }
     })
     .catch((error) => {
-      console.log("error inside post controller: ", error);
+      req.flash("error", error);
       return res.redirect("back");
     });
 };

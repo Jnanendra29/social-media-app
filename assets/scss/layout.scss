@@ -13,7 +13,10 @@ body {
   background-color: #f0f0f0;
 
   .layout-main {
+    display: flex;
     width: 100vw;
     flex-grow: 1;
+    justify-content: center;
+    align-items: center;
   }
 }

@@ -11,6 +11,8 @@ const passportLocal = require("./config/passport-local-strategy");
 const { default: mongoose } = require("mongoose");
 const MongoStore = require("connect-mongo");
 const sassMiddleware = require("node-sass-middleware");
+const flash = require("connect-flash");
+const { setFlash } = require("./config/middleware");
 
 const port = 8000;
 
@@ -71,6 +73,10 @@ app.use(passport.initialize());
 //will populate req.user with the current user.
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+//for flash messages
+app.use(flash());
+app.use(setFlash);
 
 //use express router
 app.use("/", require("./routes"));

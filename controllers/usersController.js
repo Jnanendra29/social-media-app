@@ -91,6 +91,7 @@ const create = (req, res) => {
 
 //login and create the session data
 const create_session = (req, res) => {
+  req.flash("success", "Logged in successfully");
   return res.redirect("/");
 };
 
@@ -100,6 +101,7 @@ const destroySession = (req, res) => {
       console.log(err);
       return;
     }
+    req.flash("success", "You have logged out");
     return res.redirect("/users/login");
   });
 };

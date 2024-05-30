@@ -11,5 +11,8 @@ body {
   height: 100vh;
   background-color: #f0f0f0; }
   body .layout-main {
+    display: flex;
     width: 100vw;
-    flex-grow: 1; }
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center; }

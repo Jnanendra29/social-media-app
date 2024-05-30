@@ -8,21 +8,22 @@ passport.use(
   new LocalStrategy(
     {
       usernameField: "email",
+      passReqToCallback: true, // allows us to set the first arg to req for callback
     },
-    function (email, password, done) {
+    function (req, email, password, done) {
       // find a user and establish the identity
       userModel
         .findOne({ email: email })
         .then((user) => {
           if (!user || user.password !== password) {
-            console.log("Invalid Username/Password");
+            req.flash("error", "Invalid username/password")
             return done(null, false);
           }
 
           return done(null, user);
         })
         .catch((error) => {
-          console.log("error occured in passport-local: ", error);
+          req.flash("error", error)
           return done(error);
         });
     }

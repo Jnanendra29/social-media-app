@@ -18,6 +18,7 @@ const home = (req, res) => {
   // populate the user of each post
   postModel
     .find({})
+    .sort({createdAt: -1})
     .populate("user")
     .populate({ path: "comments", populate: { path: "user" } })
     .then((posts) => {

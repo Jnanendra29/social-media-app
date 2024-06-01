@@ -8,9 +8,25 @@ const createPost = (req, res) => {
   });
   new_post
     .save()
-    .then(() => {
-      req.flash("success", "Post published");
-      return res.redirect("/");
+    .then((post) => {
+      post
+        .populate({
+          path: "user",
+          select: "-password",
+        })
+        .then((newpost) => {
+          if (req.xhr) {
+            return res.status(200).json({
+              data: {
+                post: newpost,
+              },
+              message: "Post created! ",
+            });
+          }
+          req.flash("success", "Post published");
+          return res.redirect("/");
+        })
+        .catch((error) => console.log("some error occured", error));
     })
     .catch((error) => {
       req.flash("error", error);
@@ -36,6 +52,16 @@ const destroy = (req, res) => {
         deletedComments
           .then((result) => {
             console.log("comments deleted successfully: ", result);
+
+            if (req.xhr) {
+              return res.status(200).json({
+                data: {
+                  post_id: req.params.id,
+                },
+                message: "Post deleted",
+              });
+            }
+
             req.flash("success", "Post and associated comments deleted");
             return res.redirect("/");
           })
